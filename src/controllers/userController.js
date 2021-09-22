@@ -9,12 +9,16 @@ exports.getAllUsers = (res, req) => {
     .catch(error => alert('Cant get all users', error))
 };
 
-exports.signupGet = (req, res) => {
-    res.render('signup')
+exports.createUser = (req, res) => {
+    new User (req.body)
+    .save()
+    .then(() => res.status(200).send('New user'))
+    .catch(err => console.log(err))
 }
 
-exports.loginGet = (req, res) => {
-    res.render('login')
+
+exports.login = (req, res) => {
+    res.send('login')
 }
 
 exports.signupPost = (req, res) => {
@@ -22,5 +26,6 @@ exports.signupPost = (req, res) => {
 }
 
 exports.loginPost = (req, res) => {
+    console.log(req.body)
     res.send('user logged in')
 }
